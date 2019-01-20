@@ -16,7 +16,10 @@ namespace WielkieKino.Logic
         public List<string> WybierzFilmyZGatunku(List<Film> filmy, string gatunek)
         {
             // Właściwa odpowiedź: np. "Konan Destylator" dla "Fantasy"
-            return null;
+            List<string> wynik = (from film in filmy
+                         where film.Gatunek == gatunek
+                         select film.Tytul).ToList();
+            return wynik;
         }
 
         /// <summary>
@@ -27,13 +30,18 @@ namespace WielkieKino.Logic
         public int PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
         {
             // Właściwa odpowiedź: 400
+            //int wynik =
             return -1;
         }
 
         public List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
         {
-            return null;
+            List<Film> wynik = (from seans in seanse
+                                where seans.Date.DayOfYear == data.DayOfYear
+                                select seans.Film).ToList();
+            return wynik;
         }
+
 
         /// <summary>
         /// Zwraca gatunek, z którego jest najwięcej filmów. Jeśli jest kilka takich
@@ -44,20 +52,38 @@ namespace WielkieKino.Logic
         public string NajpopularniejszyGatunek(List<Film> filmy)
         {
             // Właściwa odpowiedź: Obyczajowy
-            return null;
+            string wynik = (from film in filmy
+                            orderby film.Gatunek
+                            select film.Gatunek).Last();
+            return wynik;
         }
 
         public List<Sala> ZwrocSalePosortowanePoCalkowitejLiczbieMiejsc(List<Sala> sale)
         {
             // Właściwa odpowiedź: Kameralna, Bałtyk, Wisła (lub w odwrotnej kolejności)
-            return null;
+            List<Sala> wynik = (from sala in sale
+                                orderby (sala.LiczbaMiejscWRzedzie * sala.LiczbaRzedow)
+                                select sala).ToList();
+            return wynik;
         }
 
-        public Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data)
+        public Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data1)
         {
             // Właściwa odpowiedź dla daty 2019-01-20: sala "Wisła" 
+            Sala wynik = (from seans in seanse
+                          where seans.Date.DayOfYear == data1.DayOfYear
+                          orderby seans.Sala
+                          select seans.Sala).Last();
+                          
+                       
             return null;
         }
+        //return (from Samochod s in samochody
+        //   where(from Wyposazenie wyp in s.ListaWyposazenia
+        //          where wyp.Nazwa == w.Nazwa
+        //          select wyp).Count() > 0
+        //   select s).ToList();
+
 
         /// <summary>
         /// Uwaga: Nie wszystkie parametry przekazane do metody muszą być użyte przy
@@ -68,9 +94,15 @@ namespace WielkieKino.Logic
         /// <returns></returns>
         public Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
         {
-            // Właściwa odpowiedź: "Konan Destylator"
+            //Właściwa odpowiedź: "Konan Destylator"
+            //Film wynik = (from bilet in bilety
+
+            //              orderby bilet.S)
             return null;
         }
+
+
+
 
         /// <summary>
         /// Uwaga: Nie wszystkie parametry metody muszą być wykorzystane przy

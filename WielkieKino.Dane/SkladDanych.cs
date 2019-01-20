@@ -13,6 +13,10 @@ namespace WielkieKino.Dane
         public static List<Film> Filmy { get; private set; }
         public static List<Seans> Seanse { get; private set; }
         public static List<Bilet> Bilety { get; private set; }
+        //public static int WplywZSeansu(Bilet bilet)
+        //{
+          
+        //}
 
         static SkladDanych()
         {

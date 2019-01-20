@@ -12,6 +12,8 @@ namespace WielkieKino.Dane
     /// </summary>
     public class MetodyPomocnicze
     {
+
+
         /// <summary>
         /// Sprawdzenie czy dane miejsce w konkretnym seansie nie jest zajęte
         /// </summary>
@@ -22,7 +24,8 @@ namespace WielkieKino.Dane
         /// <returns></returns>
         public bool CzyMoznaKupicBilet(List<Bilet> sprzedaneBilety, Seans seans, int rzad, int miejsce)
         {
-            return false;
+
+                return false;
         }
 
         /// <summary>

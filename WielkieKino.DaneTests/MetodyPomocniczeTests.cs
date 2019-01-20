@@ -11,6 +11,10 @@ namespace WielkieKino.Dane.Tests
     [TestClass()]
     public class MetodyPomocniczeTests
     {
+ 
+
+ 
+
         [TestMethod()]
         public void CzyMoznaKupicBiletTest()
         {

@@ -12,5 +12,6 @@ namespace WielkieKino.Lib
         // zakładamy, że w każdym rzędzie jest tyle samo miejsc
         public int LiczbaRzedow { get; set; }
         public int LiczbaMiejscWRzedzie { get; set; }
+       
     }
 }
