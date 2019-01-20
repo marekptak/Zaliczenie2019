@@ -27,11 +27,12 @@ namespace WielkieKino.Logic
         /// </summary>
         /// <param name="bilety"></param>
         /// <returns></returns>
-        public int PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
+        public double PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
         {
             // Właściwa odpowiedź: 400
-            //int wynik =
-            return -1;
+            double wynik = (from bilet in bilety
+                         select bilet.Cena).Sum();
+            return wynik;
         }
 
         public List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
@@ -78,12 +79,6 @@ namespace WielkieKino.Logic
                        
             return null;
         }
-        //return (from Samochod s in samochody
-        //   where(from Wyposazenie wyp in s.ListaWyposazenia
-        //          where wyp.Nazwa == w.Nazwa
-        //          select wyp).Count() > 0
-        //   select s).ToList();
-
 
         /// <summary>
         /// Uwaga: Nie wszystkie parametry przekazane do metody muszą być użyte przy
@@ -95,14 +90,14 @@ namespace WielkieKino.Logic
         public Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
         {
             //Właściwa odpowiedź: "Konan Destylator"
-            //Film wynik = (from bilet in bilety
+            //Film wynik = from bilet in bilety
+            //             orderby (from bilet2 in bilety
+            //                      orderby bilet2.)
 
-            //              orderby bilet.S)
             return null;
         }
 
-
-
+ 
 
         /// <summary>
         /// Uwaga: Nie wszystkie parametry metody muszą być wykorzystane przy
@@ -113,6 +108,9 @@ namespace WielkieKino.Logic
         /// <returns></returns>
         public Film PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
         {
+            //Film wynik = (from bilet in bilety
+            //              orderby 
+            //               )
             return null;
         }
 

@@ -24,8 +24,15 @@ namespace WielkieKino.Dane
         /// <returns></returns>
         public bool CzyMoznaKupicBilet(List<Bilet> sprzedaneBilety, Seans seans, int rzad, int miejsce)
         {
-
-                return false;
+            bool czyMoznaKupic = true;
+            foreach (Bilet bilet in sprzedaneBilety)
+            {
+                if (bilet.Seans == seans && bilet.Rzad == rzad && bilet.Miejsce == miejsce)
+                {
+                    czyMoznaKupic = false;
+                }
+            }
+            return czyMoznaKupic;
         }
 
         /// <summary>
@@ -37,11 +44,20 @@ namespace WielkieKino.Dane
         /// <param name="film"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool CzyMoznaDodacSeans(List<Seans> aktualneSeanse, Sala sala, Film film, DateTime data)
+        public bool CzyMoznaDodacSeans(List<Seans> aktualneSeanse, Sala sala, DateTime data)
         {
             // np. nie można zagrać filmu "Egzamin" w sali Kameralnej 2019-01-20 o 17:00
             // można natomiast zagrać "Egzamin" w tej sali 2019-01-20 o 14:00
-            return false;
+            bool wolnaSala = true;
+            foreach (Seans seans in aktualneSeanse)
+            {
+                if (seans.Sala == sala && seans.Date == data)
+                {
+                    wolnaSala = false;
+                }
+                //metodanie uwzględnia czasu trwania filmów
+            }
+            return wolnaSala;
         }
 
         /// <summary>
@@ -53,13 +69,33 @@ namespace WielkieKino.Dane
         public int LiczbaWolnychMiejscWSali(List<Bilet> sprzedaneBilety, Seans seansDoSprawdzenia)
         {
             // Właściwa odpowiedź: np. na pierwszy seans z listy seansów w klasie SkladDanych są 72 miejsca
-            return 0;
-        }
+            
+            int liczbaKupionychBiletowNaSeans = 0;
+            foreach (Bilet bilet in sprzedaneBilety)
+            {
+                if (bilet.Seans == seansDoSprawdzenia)
+                {
+                    liczbaKupionychBiletowNaSeans += 1;
+                }
 
-        public double CalkowitePrzychodyZBiletow(List<Bilet> sprzedaneBilety)
-        {
+            }
+            int liczbaWolnychMiejscWSali = (seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie
+                        * seansDoSprawdzenia.Sala.LiczbaRzedow) - liczbaKupionychBiletowNaSeans;
+
+             return liczbaWolnychMiejscWSali;
+            }
+
+            public double CalkowitePrzychodyZBiletow(List<Bilet> sprzedaneBilety)
+            {
+
             // Właściwa odpowiedź: 400.00
-            return 0.0;
+            double suma = 0;
+                foreach(Bilet bilet in sprzedaneBilety)
+            {
+                suma += bilet.Cena;
+            }
+
+                return suma;
+            }
         }
-    }
-}
+    } 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WielkieKino.Lib;
+using WielkieKino.Dane;
 
 namespace WielkieKino.App
 {
@@ -20,6 +21,17 @@ namespace WielkieKino.App
         private static void WyswietlPodgladSali(List<Bilet> sprzedaneBilety, Seans seans)
         {
 
+            
+
+            for(int i=0; i < seans.Sala.LiczbaRzedow; i++)
+            {
+               for (int j = 0; j < seans.Sala.LiczbaMiejscWRzedzie; j++)
+                {
+                    //if ( )
+                    Console.Write("-");
+                }   
+                Console.WriteLine("");
+            }
         }
 
         /// <summary>
@@ -36,7 +48,11 @@ namespace WielkieKino.App
 
         public static void Main(string[] args)
         {
+
             WyswietlPodgladSali(Dane.SkladDanych.Bilety, Dane.SkladDanych.Seanse[0]);
+            Console.ReadKey();
+
+            //WyswietlPodgladSali(Dane.SkladDanych.Bilety, Dane.SkladDanych.Seanse[0]);
             /* Przykładowo:
             ----------
             ----------

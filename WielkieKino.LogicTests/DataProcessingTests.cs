@@ -35,6 +35,11 @@ namespace WielkieKino.Logic.Tests
         {
             Assert.AreEqual(sale[2], dp.ZwrocSalePosortowanePoCalkowitejLiczbieMiejsc(sale)[0]);
         }
+        [TestMethod()]
+        public void PodajCalkowiteWplywyZBiletowTest()
+        {
+            Assert.AreEqual(400, dp.PodajCalkowiteWplywyZBiletow(bilety));
+        }
 
     }
 }
